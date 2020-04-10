@@ -44,6 +44,7 @@ public class Board {
             throw new BoardException("Já existe uma pela na posição " + position +" do tabuleiro");
         }
         pieces[position.getRow()][position.getColumn()] = piece;
+		piece.position = position;
     }
 
     public Piece removePiece(Position position){
