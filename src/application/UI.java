@@ -3,6 +3,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -32,7 +33,6 @@ public class UI {
     // https://stackoverflow.com/questions/2979383/java-clear-the-console
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
-        //System.out.print('\u000C');
         System.out.flush();
     }
 
@@ -45,8 +45,15 @@ public class UI {
             return new ChessPosition(column, row);
         }
         catch (RuntimeException e) {
-            throw new InputMismatchException("Erro lendo posição. Valores válidos de a1 a h8.");
+            throw new InputMismatchException("Erro lendo posicao. Valores validos de a1 a h8.");
         }
+    }
+
+    public static void printMatch(ChessMatch chessMatch){
+        printBoard(chessMatch.getPieces());
+        System.out.println();
+        System.out.println("Turno: " + chessMatch.getTurn() + ". Aguardando jogador: " + chessMatch.getCurrentPlayer() +
+            (chessMatch.getCurrentPlayer() == Color.BLACK ? " (peca amarela)" : ""));
     }
 
     public static void printBoard(ChessPiece[][] pieces){
@@ -70,7 +77,6 @@ public class UI {
         }
         System.out.println("  A B C D E F G H");
     }
-    
 
     private static void printPiece(ChessPiece piece, boolean background){
         if (background){
