@@ -41,7 +41,7 @@ public class Board {
 
     public void placePiece (Piece piece, Position position) {
         if (thereIsAPiece(position)){
-            throw new BoardException("Ja existe uma pela na posicao " + position +" do tabuleiro.");
+            throw new BoardException("Ja existe uma peca na posicao " + position +" do tabuleiro.");
         }
         pieces[position.getRow()][position.getColumn()] = piece;
 		piece.position = position;
